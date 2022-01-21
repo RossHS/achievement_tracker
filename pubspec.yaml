@@ -35,6 +35,16 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
 
+  logging: ^1.0.2
+
+  # Сервисы Firebase
+  cloud_firestore: ^3.1.0
+  firebase_auth: ^3.1.0
+  firebase_core: ^1.6.0
+
+  # Для сериализации объектов из/в JSON
+  json_annotation: ^4.3.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -45,6 +55,13 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
+
+  # Генерация кода запаковки и распаковки объектов в json
+  json_serializable: ^6.0.0
+  build_runner: ^2.0.6
+
+  # Mock зависимость firestore для тестирования кода
+  fake_cloud_firestore: ^1.2.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

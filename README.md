@@ -1,16 +1,16 @@
-# achievement_tracker
+<div align="center">
 
-Just another Achievement Tracker...
+# Achievement Tracker
 
-## Getting Started
+Flutter app for building good habits and self-discipline.
 
-This project is a starting point for a Flutter application.
+[Tech Stack](#tech-stack)
 
-A few resources to get you started if this is your first Flutter project:
+</div>
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Tech Stack
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Backend - [Firebase](https://firebase.google.com/)
+  - DB - [Firestore](https://firebase.google.com/docs/firestore)
+  - User Auth - [Authentication Firebase](https://firebase.google.com/docs/auth)
+- Testing [NoSQL Firestore](https://firebase.google.com/docs/firestore) - Mock dep [Fake Cloud Firestore](https://pub.dev/packages/fake_cloud_firestore) 
