@@ -44,3 +44,7 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# приватные API ключи Firebase
+/android/app/google-services.json
+/web/firebase.config.init.js
