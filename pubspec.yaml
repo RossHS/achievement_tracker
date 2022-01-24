@@ -27,7 +27,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^1.0.0
+  ross_lints:
+    git:
+      url: git://github.com/RossHS/ross_lint_ruleset
 
   # Генерация кода запаковки и распаковки объектов в json
   json_serializable: ^6.0.0
