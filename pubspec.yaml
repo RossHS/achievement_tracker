@@ -23,6 +23,9 @@ dependencies:
   # Для сериализации объектов из/в JSON
   json_annotation: ^4.3.0
 
+  hive: ^2.0.6
+  flutter_riverpod: ^1.0.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
