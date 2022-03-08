@@ -1,13 +1,24 @@
+import 'package:achievement_tracker/routes/routes_beamer.dart';
+import 'package:achievement_tracker/utils/riverpod_utils.dart';
+import 'package:beamer/beamer.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart';
 
 void main() async {
   _setUpLogging();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MyApp());
+  runApp(
+    const ProviderScope(
+      observers: [
+        if (kDebugMode) ProviderLogger(),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -15,7 +26,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(color: Colors.green);
+    return MaterialApp.router(
+      routerDelegate: BeamerRoutes.delegator,
+      routeInformationParser: BeamerParser(),
+    );
   }
 }
 

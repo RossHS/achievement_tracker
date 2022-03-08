@@ -25,6 +25,7 @@ dependencies:
 
   hive: ^2.0.6
   flutter_riverpod: ^1.0.3
+  beamer: ^1.4.0
 
 dev_dependencies:
   flutter_test:
