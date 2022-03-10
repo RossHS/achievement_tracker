@@ -1,4 +1,4 @@
-import 'package:achievement_tracker/routes/home_screen.dart';
+import 'package:achievement_tracker/routes/start_screen.dart';
 import 'package:achievement_tracker/routes/not_found_screen.dart';
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +10,7 @@ class BeamerRoutes {
   static final delegator = BeamerDelegate(
     locationBuilder: RoutesLocationBuilder(
       routes: {
-        '/': (context, state, data) => const HomeScreen(),
+        '/': (context, state, data) => const StartScreen(),
       },
     ),
     notFoundPage: const BeamPage(

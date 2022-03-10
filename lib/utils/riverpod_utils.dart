@@ -5,7 +5,7 @@ import 'package:logging/logging.dart';
 class ProviderLogger extends ProviderObserver {
   const ProviderLogger();
 
-  static final _log = Logger('ProviderLogger');
+  static late final _log = Logger('ProviderLogger');
 
   @override
   void didUpdateProvider(
