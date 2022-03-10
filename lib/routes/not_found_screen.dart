@@ -1,4 +1,5 @@
 import 'package:beamer/beamer.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 /// Экран с ошибкой 404, когда в качестве аргумента
@@ -18,16 +19,14 @@ class NotFoundScreen extends StatelessWidget {
               '404',
               style: theme.textTheme.headline1,
             ),
-            // TODO 08.03.2022 - перевод
-            const Text('Pge Not Found'),
+            Text(tr('404.page_not_found')),
             const SizedBox(height: 20),
             OutlinedButton.icon(
               onPressed: () {
                 Beamer.of(context).beamToReplacementNamed('/');
               },
               icon: const Icon(Icons.home),
-              // TODO 08.03.2022 - перевод
-              label: const Text('Home'),
+              label: Text(tr('404.to_home')),
             ),
           ],
         ),
