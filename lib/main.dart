@@ -7,10 +7,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:logging/logging.dart';
 
 void main() async {
-  _setUpLogging();
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   await Firebase.initializeApp();
@@ -47,19 +45,4 @@ class MyApp extends StatelessWidget {
       backButtonDispatcher: BeamerBackButtonDispatcher(delegate: BeamerRoutes.delegator),
     );
   }
-}
-
-/// Инициализация настроек логгера
-void _setUpLogging() {
-  // В сборках профилирования и релизе вывод только сообщений об ошибках/угрозах и т.п.
-  if (kReleaseMode || kProfileMode) {
-    Logger.root.level = Level.WARNING;
-  } else if (kDebugMode) {
-    Logger.root.level = Level.FINE; // defaults to Level.INFO
-  }
-  // Настройка логгера. Просто выводит в консоль сообщение в определенном формате
-  Logger.root.onRecord.listen((log) {
-    // ignore: avoid_print
-    print('[${log.level.name}] ${log.loggerName} \t ${log.time} \t ${log.message}');
-  });
 }
