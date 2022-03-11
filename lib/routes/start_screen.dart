@@ -1,4 +1,5 @@
 import 'package:achievement_tracker/logger.dart';
+import 'package:achievement_tracker/routes/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
@@ -11,22 +12,26 @@ class StartScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-      body: ref.watch(_isFirstLaunch).when(
-            data: (isFirstLaunch) => Center(
-              child: isFirstLaunch ? const Text('first_launch') : const Text('non_first_launch'),
-            ),
-            error: (error, stackTrace) {
-              log.e('first launch error', error, stackTrace);
-              return Center(child: Text('$error'));
-            },
-            loading: () => const Center(
+    return ref.watch(_isFirstLaunch).when(
+          data: (isFirstLaunch) => Center(
+            child: isFirstLaunch ? const OnboardingScreen() : const Text('non_first_launch'),
+          ),
+          error: (error, stackTrace) {
+            log.e('first launch error', error, stackTrace);
+            return Scaffold(
+              body: Center(
+                child: Text('$error'),
+              ),
+            );
+          },
+          loading: () => const Scaffold(
+            body: Center(
               child: RepaintBoundary(
                 child: CircularProgressIndicator(),
               ),
             ),
           ),
-    );
+        );
   }
 }
 
