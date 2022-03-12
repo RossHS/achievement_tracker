@@ -70,43 +70,48 @@ class _BodyState extends State<_Body> {
           bottom: 20,
           left: 20,
           right: 20,
-          child: Row(
+          child: Stack(
+            alignment: Alignment.center,
             children: [
-              TextButton(
-                onPressed: () {},
-                style: TextButton.styleFrom(
-                  primary: Colors.grey,
+              Align(
+                alignment: Alignment.centerLeft,
+                child: TextButton(
+                  onPressed: () {},
+                  style: TextButton.styleFrom(
+                    primary: Colors.grey,
+                  ),
+                  child: Text(tr('onboarding.skip')),
                 ),
-                child: Text(tr('onboarding.skip')),
               ),
-              Expanded(
-                child: RepaintBoundary(
-                  child: ValueListenableBuilder(
-                    valueListenable: _currentPage,
-                    builder: (context, value, child) => Wrap(
-                      alignment: WrapAlignment.center,
-                      spacing: 4,
-                      runSpacing: 4,
-                      children: [
-                        for (var i = 0; i < widget.children.length; i++)
-                          AnimatedContainer(
-                            key: ValueKey(i),
-                            duration: const Duration(milliseconds: 300),
-                            height: 10,
-                            width: i == value ? 30 : 10,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: i == value ? colorScheme.primary : Colors.grey,
-                            ),
+              RepaintBoundary(
+                child: ValueListenableBuilder(
+                  valueListenable: _currentPage,
+                  builder: (context, value, child) => Wrap(
+                    alignment: WrapAlignment.center,
+                    spacing: 4,
+                    runSpacing: 4,
+                    children: [
+                      for (var i = 0; i < widget.children.length; i++)
+                        AnimatedContainer(
+                          key: ValueKey(i),
+                          duration: const Duration(milliseconds: 300),
+                          height: 10,
+                          width: i == value ? 30 : 10,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: i == value ? colorScheme.primary : Colors.grey,
                           ),
-                      ],
-                    ),
+                        ),
+                    ],
                   ),
                 ),
               ),
-              TextButton(
-                onPressed: () {},
-                child: Text(tr('onboarding.next')),
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () {},
+                  child: Text(tr('onboarding.next')),
+                ),
               ),
             ],
           ),
