@@ -23,7 +23,7 @@ void main() async {
       fallbackLocale: const Locale('en', 'US'),
       child: const ProviderScope(
         observers: [
-          if (kDebugMode) ProviderLogger(),
+          if (kDebugMode) RiverpodLogger(),
         ],
         child: MyApp(),
       ),
