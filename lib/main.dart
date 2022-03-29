@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:achievement_tracker/routes/routes_beamer.dart';
 import 'package:achievement_tracker/utils/riverpod_utils.dart';
 import 'package:beamer/beamer.dart';
@@ -5,11 +7,21 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // Из-за fullscreen splash screen на iOS надо руками восстанавливать статус бар и navigation бар
+  // https://pub.dev/packages/flutter_native_splash
+  if (!kIsWeb && Platform.isIOS) {
+    SystemChrome.setEnabledSystemUIMode(
+      SystemUiMode.manual,
+      overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top],
+    );
+  }
+
   await EasyLocalization.ensureInitialized();
   await Firebase.initializeApp();
   await Hive.initFlutter();
