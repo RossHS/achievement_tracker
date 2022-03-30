@@ -3,11 +3,12 @@ import 'dart:io';
 import 'package:achievement_tracker/routes/routes_beamer.dart';
 import 'package:achievement_tracker/utils/riverpod_utils.dart';
 import 'package:beamer/beamer.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -22,23 +23,14 @@ void main() async {
     );
   }
 
-  await EasyLocalization.ensureInitialized();
   await Firebase.initializeApp();
   await Hive.initFlutter();
   runApp(
-    EasyLocalization(
-      supportedLocales: const [
-        Locale('ru'),
-        Locale('en', 'US'),
+    const ProviderScope(
+      observers: [
+        if (kDebugMode) RiverpodLogger(),
       ],
-      path: 'assets/translations',
-      fallbackLocale: const Locale('en', 'US'),
-      child: const ProviderScope(
-        observers: [
-          if (kDebugMode) RiverpodLogger(),
-        ],
-        child: MyApp(),
-      ),
+      child: MyApp(),
     ),
   );
 }
@@ -49,9 +41,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: AppLocalizations.supportedLocales,
       routerDelegate: BeamerRoutes.delegator,
       routeInformationParser: BeamerParser(),
       backButtonDispatcher: BeamerBackButtonDispatcher(delegate: BeamerRoutes.delegator),

@@ -1,5 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 /// Окно приветствия нового пользователя, которое знакомит с основным
 /// функционалом и предназначением приложения
@@ -52,6 +52,7 @@ class _BodyState extends State<_Body> {
 
   @override
   Widget build(BuildContext context) {
+    final tr = AppLocalizations.of(context)!;
     final colorScheme = Theme.of(context).colorScheme;
     print('rebuild!');
     return Stack(
@@ -76,11 +77,13 @@ class _BodyState extends State<_Body> {
               Align(
                 alignment: Alignment.centerLeft,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    print('skip');
+                  },
                   style: TextButton.styleFrom(
                     primary: Colors.grey,
                   ),
-                  child: Text(tr('onboarding.skip')),
+                  child: Text(tr.onboardingSkip),
                 ),
               ),
               RepaintBoundary(
@@ -109,8 +112,19 @@ class _BodyState extends State<_Body> {
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
-                  onPressed: () {},
-                  child: Text(tr('onboarding.next')),
+                  onPressed: () {
+                    print(_pageController.page);
+                    // Закрытие окна приветствия пользователя, если это последний блок информации
+                    if (_pageController.page == widget.children.length - 1) {
+                      print('end!');
+                    } else {
+                      _pageController.nextPage(
+                        duration: const Duration(milliseconds: 400),
+                        curve: Curves.fastOutSlowIn,
+                      );
+                    }
+                  },
+                  child: Text(tr.onboardingNext),
                 ),
               ),
             ],

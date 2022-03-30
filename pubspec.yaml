@@ -10,6 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
 
   cupertino_icons: ^1.0.2
 
@@ -27,8 +29,10 @@ dependencies:
   hive_flutter: ^1.1.0
   flutter_riverpod: ^1.0.3
   beamer: ^1.4.0
-  easy_localization: ^3.0.0
   flutter_native_splash: ^2.1.1
+
+  # Flutter localization
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
@@ -36,7 +40,7 @@ dev_dependencies:
 
   ross_lints:
     git:
-      url: git://github.com/RossHS/ross_lint_ruleset
+      url: https://github.com/RossHS/ross_lint_ruleset
 
   # Генерация кода запаковки и распаковки объектов в json
   json_serializable: ^6.0.0
@@ -47,9 +51,9 @@ dev_dependencies:
   fake_cloud_firestore: ^1.2.0
 
 flutter:
+  generate: true
   uses-material-design: true
   assets:
-    - assets/translations/
     - assets/img/
 
 # Run commands to generate splash screen

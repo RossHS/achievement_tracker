@@ -1,6 +1,6 @@
 import 'package:beamer/beamer.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 /// Экран с ошибкой 404, когда в качестве аргумента
 /// использован некорректный маршрут
@@ -9,6 +9,7 @@ class NotFoundScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tr = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
     return Scaffold(
       body: Center(
@@ -19,14 +20,14 @@ class NotFoundScreen extends StatelessWidget {
               '404',
               style: theme.textTheme.headline1,
             ),
-            Text(tr('404.page_not_found')),
+            Text(tr.pageNotFound),
             const SizedBox(height: 20),
             OutlinedButton.icon(
               onPressed: () {
                 Beamer.of(context).beamToReplacementNamed('/');
               },
               icon: const Icon(Icons.home),
-              label: Text(tr('404.to_home')),
+              label: Text(tr.toHome),
             ),
           ],
         ),
